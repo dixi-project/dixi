@@ -1,5 +1,5 @@
 <?php
-class controllerAgregargrupo extends Controller {
+class controllerAgregarprofesor extends Controller {
     function __construct($view, $conf, $var, $acc) {
         parent::__construct($view, $conf, $var, $acc);
     } 
@@ -7,10 +7,10 @@ class controllerAgregargrupo extends Controller {
         foreach ($this->var as $key => $value) {
             $$key = $value;
         }
-        $dominio = "grupo";
+        $dominio = "profesor";
         $this->data["accion"] = "Agregar";
-        $this->data["dominio"] = "Grupo"; 
-        $this->view->show("addGrupo.twig", $this->data, $this->accion); 
+        $this->data["dominio"] = "Profesor";
+        $this->view->show("addProfesor.twig", $this->data, $this->accion); 
     }
 }
 ?>

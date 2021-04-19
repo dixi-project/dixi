@@ -60,6 +60,87 @@
                     </form>
                 </div>
             </div>
+
+{# Inicio de la segunda tabla #}
+            <div class="container">
+                <div class="panel">
+
+                {# Inicio del formulario #}
+                    <form id="frm1" name="frm1" action="{{pathCMSSite}}agregar-rol" method="post">
+
+                    {# Contiene la tabla asignada #}
+                        <input type="hidden" name="Dominio" id="Dominio" value="{{dominio}}">
+                        
+                        {# Contiene la variable del id de los roles #}
+                        <input type="hidden" name="idReg" id="idReg" value="">
+
+                        {# La accion a realizar, eliminar agregar etc#}
+                        <input type="hidden" name="Action" id="Action" value="">
+
+                        {# La accion a realizar, en este caso se dirige al control de agregar-rol#}
+                        <input type="hidden" name="path" id="path" value="{{pathCMSSite}}">
+
+                        {# stilos de la tabla u caja dentro de los datos #}
+                        <div class="panel-heading">
+                            <div id="page-title"  style="float: left;padding-top: 5px;">
+                                <h2>{{dominio|upper|replace({"_":" "})}}</h2>
+                            </div>    
+                            <div class="text-right">
+                                <button class="btn btn-labeled btn-primary" type="submit">
+                                    <span class="btn-label">
+                                        <i class="glyph-icon icon-plus"></i>
+
+                                        {# Nombre que se le dara al boton #}
+                                    </span> Nuevo registro
+                                </button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="example-box-wrapper">
+
+                            {# Contenedores de la tabla, o campos, asi como sus estilos #}
+                                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                                    <thead>
+                                        <tr>
+                                           <th class="">Roles</th>
+                                            <th class="">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {# Campos en donde se almacenan los datos de la BD #}
+                                        {% for key, value in datos %} 
+                                            <tr class="gradeX">
+                                                <td>{{value.rol}}</td>
+                                                <td>
+                                                    <button class="btn btn-labeled btn-info" type="button" onclick="clickBtn({{value.id}}, 'edit','editar-rol','frm1')">
+                                                        <span class="btn-label">
+                                                            <i class="glyph-icon icon-edit"></i>
+
+                                                            {# Nombre que se le dara al boton #}
+                                                        </span>
+                                                        Editar
+                                                    </button>
+                                                    <button class="btn btn-labeled btn-danger" type="button" onclick="clickBtn({{value.id}}, 'delete','rol','frm1')">
+                                                        <span class="btn-label">
+                                                            <i class="glyph-icon icon-times"></i>
+                                                            {# Nombre que se le dara al boton #}
+                                                        </span>
+                                                        Eliminar
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            {# Cierre del for de los datos llamados y almacenados#}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

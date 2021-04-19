@@ -5,7 +5,7 @@
         <div id="page-content">
             <div class="container">
                 <div class="panel">
-                    <form id="frm1" name="frm1" action="{{pathCMSSite}}agregar-grupo" method="post">
+                    <form id="frm1" name="frm1" action="{{pathCMSSite}}agregar-profesor" method="post">
                         <input type="hidden" name="Dominio" id="Dominio" value="{{dominio}}">
                         <input type="hidden" name="idReg" id="idReg" value="">
                         <input type="hidden" name="Action" id="Action" value="">
@@ -19,7 +19,6 @@
                                     <span class="btn-label">
                                         <i class="glyph-icon icon-plus"></i>
                                     </span> Agregar
-
                                 </button>
                             </div>
                         </div>
@@ -29,7 +28,7 @@
                                     <thead>
                                         <tr>
                                            <th class="">id</th>
-                                           <th class="">Grupo</th>
+                                           <th class="">Profesor</th>
                                             <th class="">Accion</th>
                                         </tr>
                                     </thead>
@@ -37,20 +36,19 @@
                                         {% for key, value in datos %} 
                                             <tr class="gradeX">
                                                 <td>{{value.id}}</td>
-                                                <td>{{value.grupo}}</td>
+                                                <td>{{value.profesor}}</td>
                                                 <td>
-                                                    <button class="btn btn-labeled btn-info" type="button" onclick="clickBtn({{value.id}}, 'edit','editar-grupo','frm1')">
+                                                    <button class="btn btn-labeled btn-info" type="button" onclick="clickBtn({{value.id}}, 'edit','editar-profesor','frm1')">
                                                         <span class="btn-label">
                                                             <i class="glyph-icon icon-edit"></i>
                                                         </span>
                                                         Editar
                                                     </button>
-                                                    <button class="btn btn-labeled btn-danger" type="button" onclick="clickBtn({{value.id}}, 'delete','grupo','frm1')">
+                                                    <button class="btn btn-labeled btn-danger" type="button" onclick="clickBtn({{value.id}}, 'delete','profesor','frm1')">
                                                         <span class="btn-label">
                                                             <i class="glyph-icon icon-times"></i>
-                                                        </span> 
+                                                        </span>
                                                         Eliminar
-
                                                     </button>
                                                 </td>
                                             </tr>
