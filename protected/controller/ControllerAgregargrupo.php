@@ -9,8 +9,8 @@ class controllerAgregargrupo extends Controller {
         }
         $dominio = "grupo";
         $this->data["accion"] = "Agregar";
-        $this->data["dominio"] = "Grupo";
-        $this->view->show("addgrupo.twig", $this->data, $this->accion); 
+        $this->data["dominio"] = "Grupo"; 
+        $this->view->show("addGrupo.twig", $this->data, $this->accion); 
     }
 }
 ?>

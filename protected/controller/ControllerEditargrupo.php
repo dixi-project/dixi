@@ -4,7 +4,6 @@ class controllerEditargrupo extends Controller {
         parent::__construct($view, $conf, $var, $acc);
     } 
     public function main() {
-        //var_dump($this->var );
         foreach ($this->var as $key => $value) {
             $this->data[$key]=$value;
             $$key = $value;

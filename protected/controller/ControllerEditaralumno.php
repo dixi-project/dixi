@@ -13,7 +13,7 @@ class controllerEditaralumno extends Controller {
         $dominio = "alumno";
         $sql="SELECT a.*,g.grupo FROM alumno AS a INNER JOIN grupo AS g ON a.grupo_id=g.id WHERE a.id = {$idReg}";
         $this->data["datos"] = (object) indexModel::bd($this->conf)->getSQL($sql)[0];
-        var_dump( $this->data["datos"]);
+        
         $this->data["accion"] = "Editar";
         $this->data["dominio"] = "Alumno";
         $this->view->show("editAlumno.twig", $this->data, $this->accion); 
