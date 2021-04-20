@@ -1,0 +1,66 @@
+{% include 'includesAdmin/header.html' %}
+<div id="page-wrapper">
+    {% include 'includesAdmin/header2.html' %}
+    <div id="page-content-wrapper">
+        <div id="page-content">
+            <div class="container">
+                <div class="panel">
+                    <form id="frm1" name="frm1" action="{{pathCMSSite}}agregar-proveedor" method="post">
+                        <input type="hidden" name="Dominio" id="Dominio" value="{{dominio}}">
+                        <input type="hidden" name="idReg" id="idReg" value="">
+                        <input type="hidden" name="Action" id="Action" value="">
+                        <input type="hidden" name="path" id="path" value="{{pathCMSSite}}">
+                        <div class="panel-heading">
+                            <div id="page-title"  style="float: left;padding-top: 5px;">
+                                <h2>{{dominio|upper|replace({"_":" "})}}</h2>
+                            </div>    
+                            <div class="text-right">
+                                <button class="btn btn-labeled btn-primary" type="submit">
+                                    <span class="btn-label">
+                                        <i class="glyph-icon icon-plus"></i>
+                                    </span> Agregar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="example-box-wrapper">
+                                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                                    <thead>
+                                        <tr>
+                                           <th class="">id</th>
+                                           <th class="">nombre</th>
+                                            <th class="">Accion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for key, value in datos %} 
+                                            <tr class="gradeX">
+                                                <td>{{value.id}}</td>
+                                                <td>{{value.nombre}}</td>
+                                                <td>
+                                                    <button class="btn btn-labeled btn-info" type="button" onclick="clickBtn({{value.id}}, 'edit','editar-proveedor','frm1')">
+                                                        <span class="btn-label">
+                                                            <i class="glyph-icon icon-edit"></i>
+                                                        </span>
+                                                        Editar
+                                                    </button>
+                                                    <button class="btn btn-labeled btn-danger" type="button" onclick="clickBtn({{value.id}}, 'delete','proveedor','frm1')">
+                                                        <span class="btn-label">
+                                                            <i class="glyph-icon icon-times"></i>
+                                                        </span>
+                                                        Eliminar
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'includesAdmin/footerJS.html' %}
