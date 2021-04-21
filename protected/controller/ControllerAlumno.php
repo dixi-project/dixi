@@ -52,8 +52,8 @@ class ControllerAlumno extends Controller
         }
 
         $this->data["dominio"] = $dominio ;
-        // --> Extraer datos
-        //$this->data["datos"] = indexModel::bd($this->conf)->getDominio($dominio);
+        // --> Extraer datos de materias 
+        $this->data["materias"] = indexModel::bd($this->conf)->getDominio("materia");
         // --> Extraer datos
         $this->data["datos"] = indexModel::bd($this->conf)->getSQL("SELECT a.*,g.grupo FROM alumno AS a INNER JOIN grupo AS g ON a.grupo_id=g.id");
 

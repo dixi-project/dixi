@@ -1,13 +1,14 @@
 <?php
-class controllerAgregargrupo extends Controller {
+class controllerAgregar extends Controller {
     function __construct($view, $conf, $var, $acc) {
         parent::__construct($view, $conf, $var, $acc);
     } 
     public function main() {
+        
         foreach ($this->var as $key => $value) {
             $$key = $value;
         }
-        $dominio = "grupo";
+        $dominio = $Dominio;
         $this->data["accion"] = "Agregar";
         $this->data["nameTable"] = indexModel::bd($this->conf)->getEstructuraTable($dominio)["structure"]["nameTable"];
         $this->data["dominio"] = $this->var["Dominio"];

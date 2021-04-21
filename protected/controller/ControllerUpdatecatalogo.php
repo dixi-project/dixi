@@ -38,7 +38,7 @@ class controllerUpdatecatalogo {
             }else{
                 $data["return"] = $this->var["path"]."catalogo/".$this->var["Dominio"];
             }
-            $data["tiempo"] = "3";
+            $data["tiempo"] = "0";
         }elseif(isset($cmdRegresar)){
             $data["isCorrect"] = TRUE;
             $data["tituloMensaje"] = "Regresando!";
