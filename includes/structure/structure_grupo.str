@@ -1,1 +1,1 @@
-[{"structure":{"name":"Grupo","img":false,"pdf":false,"files":{"nf":0},"return":["grupo"],"views":{"ADD":{"grupo":"Grupo"},"EDIT":[],"DETAIL":[],"FAST":[],"REPORT":[]}}},{"id":{"name":"Id"},"grupo":{"name":"Grupo"}}]
+[null,{"id":null,"grupo":null}]

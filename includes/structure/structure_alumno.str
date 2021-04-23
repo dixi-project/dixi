@@ -1,1 +1,1 @@
-[{"structure":{"name":"Alumno","img":true,"pdf":false,"files":{"nf":0},"return":["alumno"],"views":{"ADD":[],"EDIT":[],"DETAIL":[],"FAST":[],"REPORT":[]}}},{"id":null,"alumno":null,"telefono":null,"grupo_id":null}]
+[null,{"id":null,"alumno":null,"telefono":null,"grupo_id":null}]

@@ -1,5 +1,5 @@
 <?php
-class controllerAgregar extends Controller {
+class ControllerAgregar extends Controller {
     function __construct($view, $conf, $var, $acc) {
         parent::__construct($view, $conf, $var, $acc);
     } 
