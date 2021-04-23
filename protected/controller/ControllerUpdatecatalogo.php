@@ -1,5 +1,5 @@
 <?php
-class controllerUpdatecatalogo {
+class ControllerUpdatecatalogo {
     function __construct($view, $conf, $var, $acc) {
         $this->view = $view;
         $this->conf = $conf;

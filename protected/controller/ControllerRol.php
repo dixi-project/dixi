@@ -1,5 +1,5 @@
 <?php
-class ControllerLuis extends Controller
+class ControllerRol extends Controller
 {
     function __construct($view, $conf, $var, $acc)
     {
