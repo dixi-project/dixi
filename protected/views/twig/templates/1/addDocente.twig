@@ -1,0 +1,78 @@
+{% include 'includesAdmin/header.html' %}
+	<div id="page-wrapper">
+		{% include 'includesAdmin/header2.html' %}
+		<div id="page-content-wrapper">
+			<div id="page-content">
+				<div class="container">
+					<div id="page-title">
+						<h2>Agregar Registro</h2>
+						<p>{{dominio|upper}}</p>
+					</div>
+
+					{# Inicio del formulario #}
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form id="frm1" name="frm1" action="{{pathCMSSite}}docente" method="post" enctype="multipart/form-data" class="form-horizontal bordered-row">
+								<input type="hidden" name="Dominio" id="txtDominio" value="{{dominio}}"/>
+								<input type="hidden" name="idDocente" id="idDocente" value="{{idDocente}}"/>
+								<input type="hidden" name="Action" id="Action" value=""/>
+								<input type="hidden" name="path" id="path" value="{{pathCMSSite}}"/>
+
+								{# Visualizacion de agregar #}
+
+								{# Campo de docentes #}
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										Docente
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control form-control" id="txtDocentes" name="txtDocentes" value=""/>
+									</div>
+								</div>
+
+								{# Campo de correo electronico #}
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										Correo electronico
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control form-control" id="txtCorreoelectronico" name="txtCorreoelectronico" value=""/>
+									</div>
+								</div>
+
+								{# Campo de telefono #}
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										Telefono
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control form-control" id="txtTelefono" name="txtTelefono" value=""/>
+									</div>
+								</div>
+
+								{# Campo de Botones #}
+								<div class="form-group">
+									<br/>
+									<div class="col-lg-offset-2 col-lg-10">
+
+									{# Boton de regresar #}
+										<button type="submit" class="btn btn-sm btn-info" name="cmdRegresar" id="cmdRegresar" data-action="docente" value="1">
+											<i class="glyph-icon icon-angle-double-left"></i>
+											Regresar
+										</button>
+
+										{# Boton de Guardar #}
+										<button type="submit" class="btn btn-sm btn-success" name="cmdGuardar">
+											<i class="glyph-icon icon-save"></i>
+											Guardar
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% include 'includesAdmin/footerJS.html' %}

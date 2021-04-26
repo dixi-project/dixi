@@ -1,0 +1,163 @@
+{% include 'includesAdmin/header.html' %}
+    <div id="page-wrapper">
+        {% include 'includesAdmin/header2.html' %}
+        <div id="page-content-wrapper">
+            <div id="page-content">
+                <div class="container">
+                    <div class="panel">
+
+                        <form id="frm1" name="frm1" action="{{pathCMSSite}}agregar-docente" method="post">
+                            <input type="hidden" name="Dominio" id="Dominio" value="{{dominio}}">
+                            <input type="hidden" name="idReg" id="idReg" value="">
+                            <input type="hidden" name="Action" id="Action" value="">
+                            <input type="hidden" name="path" id="path" value="{{pathSite}}">
+                            
+                            {# Boton de agregar #}
+                            <div class="panel-heading">
+                                <div id="page-title"  style="float: left;padding-top: 5px;">
+                                    <h2>{{dominio|upper|replace({"_":" "})}}</h2>
+                                </div>    
+                                <div class="text-right">
+                                    <button class="btn btn-labeled btn-primary" type="submit">
+                                        <span class="btn-label">
+                                            <i class="glyph-icon icon-plus"></i>
+                                        </span> Agregar
+                                    </button>
+                                </div>
+                            </div>
+
+                            {# Visualizacion de tabla docentes#}
+                            <div class="panel-body">
+                                <div class="example-box-wrapper">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                                        
+                                        {# Encabezado de la tabla #}
+                                        <thead>
+                                            <tr>
+                                            <th class="">Id</th>
+                                            <th class="">Docentes</th>
+                                            <th class="">Correo electronico</th>
+                                            <th class="">Telefono</th>
+                                            <th class="">Acción</th>
+                                            </tr>
+                                        </thead>
+
+                                        {# Datos de la tabla docentes #}
+                                        <tbody>
+                                            {% for key, value in datos %} 
+                                                <tr>
+                                                    <td>{{value.id}}</td>
+                                                    <td>{{value.docentes}}</td>
+                                                    <td>{{value.correoelectronico}}</td>
+                                                    <td>{{value.telefono}}</td>
+                                                    <td>
+
+                                                    {# Boton de Editar #}
+                                                        <button class="btn btn-labeled btn-info" type="button" onclick="clickBtn({{value.id}}, 'edit','editar-docente','frm1')">
+                                                            <span class="btn-label">
+                                                                <i class="glyph-icon icon-edit"></i>
+                                                            </span>
+                                                            Editar
+                                                        </button>
+
+                                                        {# Boton de Eliminar #}
+                                                        <button class="btn btn-labeled btn-danger" type="button" onclick="clickBtn({{value.id}}, 'delete','docente','frm1')">
+                                                            <span class="btn-label">
+                                                                <i class="glyph-icon icon-times"></i>
+                                                            </span>
+                                                            Eliminar
+                                                        </button>
+
+                                                        {# Boton de Calificaciones #}
+                                                        <button class="btn btn-warning btn-md btnAddCal" type="button" data-toggle="modal" data-target="#myModalCal" idProfesor="{{value.id}}">
+														<span class="btn-label">
+															<i class="glyph-icon icon-plus"></i>
+														</span>
+														Calificaciones
+													    </button>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="myModalCal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Calificaciones</h4>
+                </div>
+
+                <div class="modal-body">
+                    Alumno:
+
+                    <select name="txtAlumno" id="txtAlumno">
+                        {% for key, value in alumno %}
+                            <option value="{{value.id}}">{{value.alumno}}</option>
+                        {% endfor %}
+                    </select>
+                    Calificación:
+
+                    <input type="number" name="txtCal" id="txtCal" min="0" max="10">
+                    <input type="hidden" name="txtidProfesor" id="txtidProfesor">
+
+                    <button class="btn btn-azure btn-md" type="button" id="Agregar">
+					    <span class="btn-label">
+							<i class="glyph-icon icon-plus"></i>
+						</span>
+						
+					</button>
+                    <hr>
+                    <div id="idResultado">
+                    Tabla
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% include 'includesAdmin/footerJS.html' %}
+
+<script>
+/* Mostrar el id del maestro */
+$('.btnAddCal').click(function() {
+      var idProfesor = $(this).attr("idProfesor");
+      $("#txtidProfesor").val(idProfesor);   
+      var path = $("#path").val();
+      var data= "idPro="+idProfesor;
+      var html = $.ajax({
+        url: path+"includes/ajax/addDocente.php",
+        type: "POST",
+        data: data,
+        async: false
+    }).responseText;
+    $("#idResultado").html(html);    
+  });
+
+ /* Mostrar los registros en la tabla */ 
+  $('#Agregar').click(function() {
+      
+    var idAlumno =$("#txtAlumno").val();
+    var calificacion =$("#txtCal").val();
+    var idProfesor =$("#txtidProfesor").val();
+    var path = $("#path").val();
+    var data = "idal=" + idAlumno+"&cal="+calificacion+"&idPro="+idProfesor;
+    var html = $.ajax({
+        url: path+"includes/ajax/addDocente.php",
+        type: "POST",
+        data: data,
+        async: false
+    }).responseText;
+    $("#idResultado").html(html);
+
+  });
+</script>
