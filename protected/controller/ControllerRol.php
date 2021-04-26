@@ -1,5 +1,5 @@
 <?php
-class ControllerRol extends Controller
+class ControllerLuis extends Controller
 {
     function __construct($view, $conf, $var, $acc)
     {
@@ -25,20 +25,20 @@ class ControllerRol extends Controller
 
         // --> Para borrar registro
         if($Action=="delete"){
-            //$sql="DELETE FROM {$Dominio} WHERE id = ".$idReg;
-            //indexModel::bd($this->conf)->getSQL($sql);
-            indexModel::bd($this->conf)->deleteDominio("rol",$idReg);
+            $sql="DELETE FROM {$Dominio} WHERE id = ".$idReg;
+            indexModel::bd($this->conf)->getSQL($sql);
+            //indexModel::bd($this->conf)->deleteDominio("rol",$idReg);
         }
 
         // --> Editar registro 
         if(isset($cmdEditar)){
-            //$sql="UPDATE rol SET rol = '$txtRol' WHERE id = ".$idReg;
-            //indexModel::bd($this->conf)->getSQL($sql);
-            $arr= array(
+            $sql="UPDATE rol SET rol = '$txtRol' WHERE id = ".$idReg;
+            indexModel::bd($this->conf)->getSQL($sql);
+            /*$arr= array(
                 "Dominio"=>"rol",
                 "txtrol"=>$txtRol
             );
-            indexModel::bd($this->conf)->updateDominio($arr,$idReg);
+            indexModel::bd($this->conf)->updateDominio($arr,$idReg);*/
         }
 
         $this->data["dominio"] = $dominio ;

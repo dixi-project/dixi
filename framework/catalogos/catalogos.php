@@ -1088,6 +1088,7 @@ Metodos para manejo de estructuras editables
         $camposD = substr($camposD, 0, -1);
         $valoresD = substr($valoresD, 0, -1);
         $ss = "INSERT INTO $tabla ($camposD) VALUES ($valoresD)";
+       
         $recordset = $bd->prepare($ss);
         $recordset->execute();
         $idReg = $bd->lastInsertId();

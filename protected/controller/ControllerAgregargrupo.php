@@ -1,17 +1,16 @@
 <?php
-class controllerAgregarmaestro extends Controller {
+class controllerAgregargrupo extends Controller {
     function __construct($view, $conf, $var, $acc) {
         parent::__construct($view, $conf, $var, $acc);
     } 
     public function main() {
-        
         foreach ($this->var as $key => $value) {
             $$key = $value;
-        }var_dump($this->var);
-        $dominio = "rol";
+        }
+        $dominio = "grupo";
         $this->data["accion"] = "Agregar";
-        $this->data["dominio"] = "Rol";
-        $this->view->show("addRol.twig", $this->data, $this->accion); 
+        $this->data["dominio"] = "Grupo"; 
+        $this->view->show("addGrupo.twig", $this->data, $this->accion); 
     }
 }
 ?>

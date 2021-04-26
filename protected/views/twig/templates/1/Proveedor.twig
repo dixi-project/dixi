@@ -5,7 +5,7 @@
         <div id="page-content">
             <div class="container">
                 <div class="panel">
-                    <form id="frm1" name="frm1" action="{{pathCMSSite}}agregar-profesor" method="post">
+                    <form id="frm1" name="frm1" action="{{pathCMSSite}}agregar-proveedor" method="post">
                         <input type="hidden" name="Dominio" id="Dominio" value="{{dominio}}">
                         <input type="hidden" name="idReg" id="idReg" value="">
                         <input type="hidden" name="Action" id="Action" value="">
@@ -28,7 +28,7 @@
                                     <thead>
                                         <tr>
                                            <th class="">id</th>
-                                           <th class="">Profesor</th>
+                                           <th class="">nombre</th>
                                             <th class="">Accion</th>
                                         </tr>
                                     </thead>
@@ -36,28 +36,20 @@
                                         {% for key, value in datos %} 
                                             <tr class="gradeX">
                                                 <td>{{value.id}}</td>
-                                                <td>{{value.profesor}}</td>
-                                            
+                                                <td>{{value.nombre}}</td>
                                                 <td>
-                                                    <button class="btn btn-labeled btn-info" type="button" onclick="clickBtn({{value.id}}, 'edit','editar-profesor','frm1')">
+                                                    <button class="btn btn-labeled btn-info" type="button" onclick="clickBtn({{value.id}}, 'edit','editar-proveedor','frm1')">
                                                         <span class="btn-label">
                                                             <i class="glyph-icon icon-edit"></i>
                                                         </span>
                                                         Editar
                                                     </button>
-                                                    <button class="btn btn-labeled btn-danger" type="button" onclick="clickBtn({{value.id}}, 'delete','profesor','frm1')">
+                                                    <button class="btn btn-labeled btn-danger" type="button" onclick="clickBtn({{value.id}}, 'delete','proveedor','frm1')">
                                                         <span class="btn-label">
                                                             <i class="glyph-icon icon-times"></i>
                                                         </span>
                                                         Eliminar
                                                     </button>
-                                                    <button class="btn btn-warning btn-md btnAddTur" type="button" data-toggle="modal" data-target="#myModalTur" idProfesor="{{value.id}}">
-														<span class="btn-label">
-															<i class="glyph-icon icon-plus"></i>
-														</span>
-														Turno
-													</button>
-
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -71,72 +63,4 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="myModalTur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Agregar Turno</h4>
-			</div>
-			<div class="modal-body">
-				Grupo:
-
-				<select name="txtGru" id="txtGru">
-					{% for key, v in grupos %}
-						<option value="{{v.id}}">{{v.grupo}}</option>
-					{% endfor %}
-				</select>
-				Turno:
-				<select name="txtTur" id="txtTur">
-					{% for key, v in turnos %}
-						<option value="{{v.id}}">{{v.turno}}</option>
-					{% endfor %}
-				</select>
-				<input type="hidden" name="txtIDProfesor" id="txtIDProfesor">
-				<button class="btn btn-info btn-md" type="button" id="cmdAddTurNueva">
-					<span class="btn-label">
-						<i class="glyph-icon icon-plus"></i>
-					</span>
-				</button>
-                <hr>
-                <div  id="capaResultado" >
-                AQUI MERO
-                </div>
-			</div>
-
-		</div>
-	</div>
-</div>
 {% include 'includesAdmin/footerJS.html' %}
-<script>
-	$('.btnAddTur').click(function () {
-        var idProfesor = $(this).attr("idProfesor");
-        $("#txtIDProfesor").val(idProfesor);
-        var idProfesor = $("#txtIDProfesor").val();
-        var path = $("#path").val();
-        var data = "idP="+idProfesor;
-        var html = $.ajax({
-            url: path + "includes/ajax/addTurno.php",
-            type: "POST",
-            data: data,
-            async: false
-        }).responseText;
-        $("#capaResultado").html(html);
-        
-    });
-
-    $('#cmdAddTurNueva').click(function () {
-        var idgrupo = $("#txtGru").val();
-        var turno = $("#txtTur").val();
-        var idProfesor = $("#txtIDProfesor").val();
-        var path = $("#path").val();
-        var data = "idg=" + idgrupo+"&tur="+turno+"&idP="+idProfesor;
-        var html = $.ajax({
-            url: path + "includes/ajax/addTurno.php",
-            type: "POST",
-            data: data,
-            async: false
-        }).responseText;
-        $("#capaResultado").html(html);
-    });
-</script>

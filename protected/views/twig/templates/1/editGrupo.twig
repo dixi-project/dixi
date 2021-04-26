@@ -10,25 +10,23 @@
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<form id="frm1" name="frm1" action="{{pathCMSSite}}profesor" method="post" enctype="multipart/form-data" class="form-horizontal bordered-row">
+						<form id="frm1" name="frm1" action="{{pathCMSSite}}grupo" method="post" enctype="multipart/form-data" class="form-horizontal bordered-row">
 							<input type="hidden" name="Dominio" id="txtDominio" value="{{dominio}}"/>
 							<input type="hidden" name="idReg" id="idReg" value="{{idReg}}"/>
 							<input type="hidden" name="Action" id="Action" value=""/>
 							<input type="hidden" name="path" id="path" value="{{pathCMSSite}}"/>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Profesor
+									Grupo
 								</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control form-control" id="txtProfesor" name="txtProfesor" value="{{datos.profesor}}"/>
+									<input type="text" class="form-control form-control" id="txtGrupo" name="txtGrupo" value="{{datos.grupo}}"/>
 								</div>
 							</div>
-							
-							
 							<div class="form-group">
 								<br/>
 								<div class="col-lg-offset-2 col-lg-10">
-									<button type="submit" class="btn btn-sm btn-info" name="cmdRegresar" id="cmdRegresar" data-action="profesor" value="1">
+									<button type="submit" class="btn btn-sm btn-info" name="cmdRegresar" id="cmdRegresar" data-action="grupo" value="1">
 										<i class="glyph-icon icon-angle-double-left"></i>
 										Regresar
 									</button>

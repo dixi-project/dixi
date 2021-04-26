@@ -4,14 +4,15 @@ class controllerAgregarmaestro extends Controller {
         parent::__construct($view, $conf, $var, $acc);
     } 
     public function main() {
-        
+        var_dump($this->var);
         foreach ($this->var as $key => $value) {
             $$key = $value;
-        }var_dump($this->var);
-        $dominio = "rol";
+        }
+        $dominio = "maestro";
         $this->data["accion"] = "Agregar";
-        $this->data["dominio"] = "Rol";
-        $this->view->show("addRol.twig", $this->data, $this->accion); 
+        $this->data["dominio"] = "Maestro";
+        $this->data["grupos"] = indexModel::bd($this->conf)->getDominio("grupo");
+        $this->view->show("addMaestro.twig", $this->data, $this->accion); 
     }
 }
 ?>

@@ -4,6 +4,7 @@ class controllerAgregar extends Controller {
         parent::__construct($view, $conf, $var, $acc);
     } 
     public function main() {
+        
         foreach ($this->var as $key => $value) {
             $$key = $value;
         }

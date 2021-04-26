@@ -10,25 +10,47 @@
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<form id="frm1" name="frm1" action="{{pathCMSSite}}profesor" method="post" enctype="multipart/form-data" class="form-horizontal bordered-row">
+						<form id="frm1" name="frm1" action="{{pathCMSSite}}alumno" method="post" enctype="multipart/form-data" class="form-horizontal bordered-row">
 							<input type="hidden" name="Dominio" id="txtDominio" value="{{dominio}}"/>
 							<input type="hidden" name="idReg" id="idReg" value="{{idReg}}"/>
 							<input type="hidden" name="Action" id="Action" value=""/>
 							<input type="hidden" name="path" id="path" value="{{pathCMSSite}}"/>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Profesor
+									Alumno
 								</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control form-control" id="txtProfesor" name="txtProfesor" value="{{datos.profesor}}"/>
+									<input type="text" class="form-control form-control" id="txtAlumno" name="txtAlumno" value="{{datos.alumno}}"/>
 								</div>
 							</div>
-							
-							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">
+									Teléfono
+								</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control form-control" id="txtTelefono" name="txtTelefono" value="{{datos.telefono}}"/>
+								</div>
+							</div>
+							<div class="form-group">
+									<label class="col-sm-2 control-label">
+											Grupo
+									</label>
+									<div class="col-sm-10">
+									<select	class="form-control form-control" id="txtGrupo" name="txtGrupo">
+										{% for key, value in grupo %}
+										 {% if datos.grupo_id == value.id %}
+										<option value="{{value.id}}" selected>{{value.grupo}}</option>
+										{% else %}
+										<option value="{{value.id}}">{{value.grupo}}</option>
+										{% endif %}
+										 {% endfor %}
+									</select>
+									</div>
+							</div>
 							<div class="form-group">
 								<br/>
 								<div class="col-lg-offset-2 col-lg-10">
-									<button type="submit" class="btn btn-sm btn-info" name="cmdRegresar" id="cmdRegresar" data-action="profesor" value="1">
+									<button type="submit" class="btn btn-sm btn-info" name="cmdRegresar" id="cmdRegresar" data-action="alumno" value="1">
 										<i class="glyph-icon icon-angle-double-left"></i>
 										Regresar
 									</button>

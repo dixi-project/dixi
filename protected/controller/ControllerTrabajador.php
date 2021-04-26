@@ -1,5 +1,5 @@
 <?php
-class ControllerProfesor extends Controller
+class ControllerTrabajador extends Controller
 {
     function __construct($view, $conf, $var, $acc)
     {
@@ -11,14 +11,15 @@ class ControllerProfesor extends Controller
             
             $$key = $value;
         }
-        $dominio = "profesor"; 
+        $dominio = "trabajador"; 
         // --> Agregar registro 
         if(isset($cmdGuardar)){
             //$sql="INSERT INTO rol (id,rol) VALUE (0, '{$txtRol}')";
             //indexModel::bd($this->conf)->getSQL($sql);
             $arr= array(
-                "Dominio"=>"profesor",
-                "txtprofesor"=>$txtProfesor
+                "Dominio"=>"trabajador",
+                "txttrabajador"=>$txttrabajador,
+                "txttelefono"=>$txttelefono
             );
             indexModel::bd($this->conf)->updateDominio($arr);
         }
@@ -27,7 +28,7 @@ class ControllerProfesor extends Controller
         if($Action=="delete"){
             //$sql="DELETE FROM {$Dominio} WHERE id = ".$idReg;
             //indexModel::bd($this->conf)->getSQL($sql);
-            indexModel::bd($this->conf)->deleteDominio("profesor",$idReg);
+            indexModel::bd($this->conf)->deleteDominio("trabajador",$idReg);
         }
 
         // --> Editar registro 
@@ -35,22 +36,21 @@ class ControllerProfesor extends Controller
             //$sql="UPDATE rol SET rol = '$txtRol' WHERE id = ".$idReg;
             //indexModel::bd($this->conf)->getSQL($sql);
             $arr= array(
-                "Dominio"=>"profesor",
-                "txtprofesor"=>$txtProfesor
+                "Dominio"=>"trabajador",
+                "txttrabajador"=>$txttrabajador,
+                "txttelefono"=>$txttelefono
             );
             indexModel::bd($this->conf)->updateDominio($arr,$idReg);
         }
 
         $this->data["dominio"] = $dominio ;
-        // --> Extraer datos de grupos
-        $this->data["grupos"] = indexModel::bd($this->conf)->getDominio("grupo");
-        //-->estrae datos de turno
-        $this->data["turnos"] = indexModel::bd($this->conf)->getDominio("turno2");
         // --> Extraer datos
-        $this->data["datos"] = indexModel::bd($this->conf)->getSQL("SELECT * FROM profesor");
+        $this->data["datos"] = indexModel::bd($this->conf)->getDominio($dominio);
+        // --> Extraer datos
+        $this->data["datos"] = indexModel::bd($this->conf)->getSQL("SELECT * FROM trabajador");
 
         asort($this->data["datos"]);
-        $this->view->show("profesor.twig", $this->data, $this->accion);
+        $this->view->show("trabajador.twig", $this->data, $this->accion);
     }
 
 }
