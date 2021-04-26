@@ -9,7 +9,7 @@ class controllerAgregarprofesor extends Controller {
         }
         $dominio = "profesor";
         $this->data["accion"] = "Agregar";
-        $this->data["dominio"] = "Profesor";
+        $this->data["dominio"] = "profesor";
         $this->view->show("addProfesor.twig", $this->data, $this->accion); 
     }
 }

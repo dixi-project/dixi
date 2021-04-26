@@ -54,6 +54,12 @@
                                                         </span>
                                                         Eliminar
                                                     </button>
+                                                    <button class="btn btn-warning btn-md btnAddHora" type="button" data-toggle="modal" data-target="#myModalHora" idProfesor="{{value.id}}">
+														<span class="btn-label">
+															<i class="glyph-icon icon-plus"></i>
+														</span>
+														Horas
+													</button>
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -67,4 +73,69 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="myModalHora" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Agregar Horas</h4>
+			</div>
+			<div class="modal-body">
+				Salón:
+
+				<select name="txtSa" id="txtSa">
+					{% for key, v in salon %}
+						<option value="{{v.id}}">{{v.salon}}</option>
+					{% endfor %}
+				</select>
+				Horas:
+				<input type="number" name="txtHora" id="txtHora">
+				<input type="hidden" name="txtIDProfesor" id="txtIDProfesor">
+				<button class="btn btn-azure btn-md" type="button" id="cmdAddHoraNueva">
+					<span class="btn-label">
+						<i class="glyph-icon icon-plus"></i>
+					</span>
+				</button>
+                <hr>
+                <div  id="capaResultado" >
+                AQUI MERO
+                </div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
 {% include 'includesAdmin/footerJS.html' %}
+
+<script>
+	$('.btnAddHora').click(function () {
+        var idProfesor = $(this).attr("idProfesor");
+        $("#txtIDProfesor").val(idProfesor);     
+        var idProfesor = $("#txtIDProfesor").val();
+        var path = $("#path").val();
+        var data = "idP="+idProfesor;
+        var html = $.ajax({
+            url: path + "includes/ajax/addHoras.php",
+            type: "POST",
+            data: data,
+            async: false
+        }).responseText;
+        $("#capaResultado").html(html);
+    });
+
+    $('#cmdAddHoraNueva').click(function () {
+        var idsalon = $("#txtSa").val();
+        var horas = $("#txtHora").val(); 
+        var idProfesor = $("#txtIDProfesor").val();
+        var path = $("#path").val();
+        var data = "ids=" + idsalon+"&hora="+horas+"&idP="+idProfesor;
+        var html = $.ajax({
+            url: path + "includes/ajax/addHoras.php",
+            type: "POST",
+            data: data,
+            async: false
+        }).responseText;
+        $("#capaResultado").html(html);
+    });
+</script>

@@ -7,13 +7,16 @@ class ControllerProfesor extends Controller
     }
     public function main()
     {
+        //var_dump($this->var);
         foreach ($this->var as $key => $value){
             
             $$key = $value;
         }
+       
         $dominio = "profesor"; 
         // --> Agregar registro 
         if(isset($cmdGuardar)){
+
             //$sql="INSERT INTO rol (id,rol) VALUE (0, '{$txtRol}')";
             //indexModel::bd($this->conf)->getSQL($sql);
             $arr= array(
@@ -45,9 +48,10 @@ class ControllerProfesor extends Controller
             indexModel::bd($this->conf)->updateDominio($arr,$idReg);
         }
 
+
         $this->data["dominio"] = $dominio ;
-        // --> Extraer datos
-        $this->data["datos"] = indexModel::bd($this->conf)->getDominio($dominio);
+        // --> Extraer datos de salon
+        $this->data["salon"] = indexModel::bd($this->conf)->getDominio("salon");
         // --> Extraer datos
         $this->data["datos"] = indexModel::bd($this->conf)->getSQL("SELECT * FROM profesor");
 
