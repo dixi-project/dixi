@@ -43,9 +43,9 @@ class ControllerTrabajador extends Controller
             indexModel::bd($this->conf)->updateDominio($arr,$idReg);
         }
 
-        $this->data["dominio"] = $dominio ;
-        // --> Extraer datos
-        $this->data["datos"] = indexModel::bd($this->conf)->getDominio($dominio);
+        $this->data["dominio"] = $dominio;
+        // --> Extraer datos de salarios
+        $this->data["areas"] = indexModel::bd($this->conf)->getDominio("area");
         // --> Extraer datos
         $this->data["datos"] = indexModel::bd($this->conf)->getSQL("SELECT * FROM trabajador");
 

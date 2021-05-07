@@ -1,1 +1,1 @@
-[null,{"id":null,"name":{"name":"Nombre"},"email":{"name":"Correo"},"user":{"name":"Usuario"},"password":{"name":"Clave"},"rol_id":{"name":"Rol"},"status_id":{"name":"Estatus"}}]
+[{"structure":{"img":"true"}},{"id":null,"name":{"name":"Nombre"},"email":{"name":"Correo"},"user":{"name":"Usuario"},"password":{"name":"Clave"},"rol_id":{"name":"Rol"},"status_id":{"name":"Estatus"}}]
