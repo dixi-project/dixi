@@ -46,8 +46,10 @@ class ControllerProfesor extends Controller
         }
 
         $this->data["dominio"] = $dominio ;
-        // --> Extraer datos
-        $this->data["datos"] = indexModel::bd($this->conf)->getDominio($dominio);
+        // --> Extraer datos de grupos
+        $this->data["grupos"] = indexModel::bd($this->conf)->getDominio("grupo");
+        //-->estrae datos de turno
+        $this->data["turnos"] = indexModel::bd($this->conf)->getDominio("turno2");
         // --> Extraer datos
         $this->data["datos"] = indexModel::bd($this->conf)->getSQL("SELECT * FROM profesor");
 

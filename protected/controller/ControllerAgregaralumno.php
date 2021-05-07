@@ -16,4 +16,5 @@ class controllerAgregaralumno extends Controller {
         $this->view->show("addAlumno.twig", $this->data, $this->accion); 
     }
 }
+
 ?>

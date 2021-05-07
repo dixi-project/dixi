@@ -19,4 +19,5 @@ class controllerEditaralumno extends Controller {
         $this->view->show("editAlumno.twig", $this->data, $this->accion); 
     }
 }
+
 ?>

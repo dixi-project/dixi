@@ -62,3 +62,4 @@ class ControllerAlumno extends Controller
     }
 
 }
+?>

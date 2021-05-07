@@ -5,30 +5,26 @@ foreach ($_REQUEST as $key => $value) {
     $$key =  Security($value);
 }
 if(isset($acc) && $acc=="delete"){
-    $query="DELETE FROM  calificaciones WHERE id = ".$idRB;
+    $query="DELETE FROM  turno WHERE id = ".$idRB;
     $sql = $db->prepare($query);
     $sql->execute();
-}elseif(isset($cal) && $cal > 0 && isset($idm)){
-    $query="INSERT INTO calificaciones VALUES (0,{$idA},{$idm},{$cal})";
+}elseif(isset($tur)  && isset($idg)){
+    $query="INSERT INTO turno VALUES (0,{$idP},{$idg},$tur)";
     $sql = $db->prepare($query);
     $sql->execute();
 }
 
-<<<<<<< HEAD
-$sqlValidate2  ="SELECT m.materia,c.calificacion, c.id FROM calificaciones as c LEFT JOIN materia as m ON m.id = c.materia_id WHERE c.alumno_id = ".$idA;
-=======
-$sqlValidate2  ="SELECT m.materia,c.calificacion, c.id FROM calificaciones as c LEFT JOIN materia as m ON m.id = c.id_materia WHERE c.id_alumno = ".$idA;
->>>>>>> a06a6d62575dd01862db700dc0d4accd1d26a406
+$sqlValidate2  ="SELECT g.grupo,t2.turno, t.id FROM turno as t LEFT JOIN grupo as g ON g.id = t.id_grupo LEFT JOIN turno2 as t2 ON t2.id = t.id_turno WHERE t.id_profesor = ".$idP;
 $recordset2 = $db->prepare($sqlValidate2);
 $recordset2->execute();
 $datos="";
 while($row = $recordset2->fetch(PDO::FETCH_OBJ)){
     $datos .= '
             <tr>
-                <td>'.$row->materia.'</td>
-                <td>'.$row->calificacion.'</td>
+                <td>'.$row->grupo.'</td>
+                <td>'.$row->turno.'</td>
                 <td>
-                <button class="btn btn-labeled btn-danger cmdborrarcal" type="button" idregB="'.$row->id.'">
+                <button class="btn btn-labeled btn-danger cmdborrartur" type="button" idregB="'.$row->id.'">
                 <span class="btn-label">
                     <i class="glyph-icon icon-times"></i>
                 </span>
@@ -40,24 +36,24 @@ while($row = $recordset2->fetch(PDO::FETCH_OBJ)){
 }
 echo '<table class="table">
 <tr>
-    <th>Materia</th>
-    <th>Calificación</th>
+    <th>Grupo</th>
+    <th>Turno</th>
     <th>Action</th>
 </tr>
 '.$datos.'
 </table>';
 ?>
 <script>
-	$('.cmdborrarcal').click(function () {
+	$('.cmdborrartur').click(function () {
         var idregB = $(this).attr("idregB");
         var path = $("#path").val();
-        var data = "idRB="+idregB+"&acc=delete&idA=<?php echo $idA ?>";
+        var data = "idRB="+idregB+"&acc=delete&idP=<?php echo $idP ?>";
         var html = $.ajax({
-            url: path + "includes/ajax/addCalificacion.php",
+            url: path + "includes/ajax/addTurno.php",
             type: "POST",
             data: data,
             async: false
         }).responseText;
         $("#capaResultado").html(html);
     });
-    </script>
+</script>
