@@ -24,7 +24,7 @@
 			try {
 
 				
-				parent::__construct('mysql:host=' . $host1 . ';port=3306;dbname=' . $bd1, $user1, $clave1);
+				parent::__construct('mysql:host=' . $host1 . ';dbname=' . $bd1, $user1, $clave1);
 			} catch (PDOException $e) {
                                 print "<div style='text-align:center;'>"
                             . "<img src='includes/img/logo.png' width='200'>"

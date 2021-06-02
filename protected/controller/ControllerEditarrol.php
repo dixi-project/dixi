@@ -1,5 +1,5 @@
 <?php
-class controllerEditarrol extends Controller {
+class ControllerEditarrol extends Controller {
     function __construct($view, $conf, $var, $acc) {
         parent::__construct($view, $conf, $var, $acc);
     } 

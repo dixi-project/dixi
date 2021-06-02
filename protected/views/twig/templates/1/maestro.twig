@@ -9,7 +9,7 @@
                         <input type="hidden" name="Dominio" id="Dominio" value="{{dominio}}">
                         <input type="hidden" name="idReg" id="idReg" value="">
                         <input type="hidden" name="Action" id="Action" value="">
-                        <input type="hidden" name="path" id="path" value="{{pathCMSSite}}">
+                        <input type="hidden" name="path" id="path" value="{{pathSite}}">
                         <div class="panel-heading">
                             <div id="page-title"  style="float: left;padding-top: 5px;">
                                 <h2>{{dominio|upper|replace({"_":" "})}}</h2>
@@ -54,6 +54,12 @@
                                                         </span>
                                                         Eliminar
                                                     </button>
+                                                    <button class="btn btn-warning btn-md btnAddCal" type="button" data-toggle="modal" data-target="#myModalCal" idalumno="{{value.id}}">
+														<span class="btn-label">
+															<i class="glyph-icon icon-plus"></i>
+														</span>
+														Desempeño por materia
+													</button>
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -67,4 +73,69 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="myModalCal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Agregar Desempeño</h4>
+			</div>
+			<div class="modal-body">
+				Materia:
+
+				<select name="txtMate" id="txtMate">
+					{% for key, v in materias %}
+						<option value="{{v.id}}">{{v.materia}}</option>
+					{% endfor %}
+				</select>
+				Desempeño:
+				<input type="text" name="txtDes" id="txtDes"> %
+				<input type="hidden" name="txtIDAlumno" id="txtIDAlumno">
+				<button class="btn btn-info btn-md" type="button" id="cmdAddCalNueva">
+					<span class="btn-label">
+						<i class="glyph-icon icon-plus"></i>
+					</span>
+				</button>
+                <hr>
+                <div  id="capaResultado" >
+                AQUI MERO
+                </div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
 {% include 'includesAdmin/footerJS.html' %}
+
+<script>
+	$('.btnAddCal').click(function () {
+        var idAlumno = $(this).attr("idAlumno");
+        $("#txtIDAlumno").val(idAlumno);
+        var idAlumno = $("#txtIDAlumno").val();
+        var path = $("#path").val();
+        var data = "idA="+idAlumno;
+        var html = $.ajax({
+            url: path + "includes/ajax/addDesempeno.php",
+            type: "POST",
+            data: data,
+            async: false
+        }).responseText;
+        $("#capaResultado").html(html);
+    });
+
+    $('#cmdAddCalNueva').click(function () {
+        var idmateria = $("#txtMate").val();
+        var desempeno = $("#txtDes").val();
+        var idAlumno = $("#txtIDAlumno").val();
+        var path = $("#path").val();
+        var data = "idm=" + idmateria+"&des="+desempeno+"&idA="+idAlumno;
+        var html = $.ajax({
+            url: path + "includes/ajax/addDesempeno.php",
+            type: "POST",
+            data: data,
+            async: false
+        }).responseText;
+        $("#capaResultado").html(html);
+    });
+</script>
