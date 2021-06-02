@@ -20,7 +20,7 @@ class ControllerProfesor extends Controller
                 "Dominio"=>"profesor",
                 "txtprofesor"=>$txtProfesor,
                 "txttelefono"=>$txtTelefono,
-                "txtemail"=>$txtEmail
+                
             );
             indexModel::bd($this->conf)->updateDominio($arr);
         }
@@ -40,16 +40,15 @@ class ControllerProfesor extends Controller
                 "Dominio"=>"profesor",
                 "txtprofesor"=>$txtProfesor,
                 "txttelefono"=>$txtTelefono,
-                "txtemail"=>$txtEmail
+                
             );
             indexModel::bd($this->conf)->updateDominio($arr,$idReg);
         }
 
         $this->data["dominio"] = $dominio ;
-        // --> Extraer datos de grupos
+        // --> Extraer datos
+        $this->data["materias"] = indexModel::bd($this->conf)->getDominio("materia");
         $this->data["grupos"] = indexModel::bd($this->conf)->getDominio("grupo");
-        //-->estrae datos de turno
-        $this->data["turnos"] = indexModel::bd($this->conf)->getDominio("turno2");
         // --> Extraer datos
         $this->data["datos"] = indexModel::bd($this->conf)->getSQL("SELECT * FROM profesor");
 
