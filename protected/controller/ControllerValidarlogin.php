@@ -1,5 +1,5 @@
 <?php
-class controllerValidarLogin {
+class ControllerValidarLogin {
     function __construct($view, $conf, $var, $acc) {
         $this->view = $view;
         $this->conf = $conf;
